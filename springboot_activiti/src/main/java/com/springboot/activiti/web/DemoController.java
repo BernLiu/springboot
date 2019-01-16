@@ -25,23 +25,25 @@ public class DemoController {
 	public void firstDemo() {
  
 		//根据bpmn文件部署流程
-		Deployment deployment = repositoryService.createDeployment().addClasspathResource("leaveBill.bpmn").deploy();
+		Deployment deployment = repositoryService.createDeployment().addClasspathResource("processes/MyProcess.bpmn").deploy();
+		System.out.println("根据bpmn文件部署流程"+deployment.getId());
 		//获取流程定义
 		ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().deploymentId(deployment.getId()).singleResult();
+		System.out.println("获取流程定义"+processDefinition.getId());
 		//启动流程定义，返回流程实例
 		ProcessInstance pi = runtimeService.startProcessInstanceById(processDefinition.getId());
 		String processId = pi.getId();
 		System.out.println("流程创建成功，当前流程实例ID："+processId);
 		
-		Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
-		System.out.println("第一次执行前，任务名称："+task.getName());
-		taskService.complete(task.getId());
+//		Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
+//		System.out.println("第一次执行前，任务名称："+task.getName());
+//		taskService.complete(task.getId());
  
-		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
-		System.out.println("第二次执行前，任务名称："+task.getName());
-		taskService.complete(task.getId());
+//		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
+//		System.out.println("第二次执行前，任务名称："+task.getName());
+//		taskService.complete(task.getId());
  
-		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
-		System.out.println("task为null，任务执行完毕："+task);
+//		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
+//		System.out.println("task为null，任务执行完毕："+task);
 	}
 }

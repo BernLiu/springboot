@@ -11,11 +11,7 @@ import org.springframework.stereotype.Component;
 
 import com.springboot.activiti.listener.GlobalActivitiEventListener;
 
-/**
- *   解决乱码问题
- * @author Bern
- *
- */
+
 @Component
 public class ActivitiConfig implements ProcessEngineConfigurationConfigurer  {
 	

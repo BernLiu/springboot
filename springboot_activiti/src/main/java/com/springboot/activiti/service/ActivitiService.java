@@ -14,6 +14,9 @@ import javax.imageio.ImageIO;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.HistoryService;
+import org.activiti.engine.ProcessEngine;
+import org.activiti.engine.ProcessEngineConfiguration;
+import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
@@ -42,5 +45,7 @@ public class ActivitiService {
 	@Autowired
 	private ProcessEngineConfigurationImpl processEngineConfiguration;
 
-	
+	public void ActivitiDemo() {
+		
+	}
 }
