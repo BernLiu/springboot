@@ -16,7 +16,7 @@ public class GlobalActivitiEventListener implements ActivitiEventListener,Serial
 
 	@Override
 	public void onEvent(ActivitiEvent event) {
-		
+		System.out.println("event  >>>>>>"+event.getProcessInstanceId());
 		
 	}
 

@@ -25,7 +25,7 @@ public class DemoController {
 	public void firstDemo() {
  
 		//根据bpmn文件部署流程
-		Deployment deployment = repositoryService.createDeployment().addClasspathResource("demo2.bpmn").deploy();
+		Deployment deployment = repositoryService.createDeployment().addClasspathResource("leaveBill.bpmn").deploy();
 		//获取流程定义
 		ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().deploymentId(deployment.getId()).singleResult();
 		//启动流程定义，返回流程实例
