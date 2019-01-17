@@ -36,16 +36,27 @@ public class ActivitiService {
 
 	@Autowired
 	private RuntimeService runtimeService;
+
 	@Autowired
 	private TaskService taskService;
-	@Autowired
-	private HistoryService historyService;
-	@Autowired
-	private RepositoryService repositoryService;
-	@Autowired
-	private ProcessEngineConfigurationImpl processEngineConfiguration;
 
-	public void ActivitiDemo() {
-		
+	public String startProcess(String message, String assignee) {
+
+		Map<String, Object> variables = new HashMap<String, Object>();
+		variables.put("message", message);
+		variables.put("person", assignee);
+
+		runtimeService.startProcessInstanceByMessage(message, variables);
+
+		return "Process started";
 	}
+	
+	public List<Task> getTasks(String assignee) {
+		return taskService.createTaskQuery().taskAssignee(assignee).list();
+	}
+
+	public void completeTask(String taskId) {
+		taskService.complete(taskId);
+	}
+
 }

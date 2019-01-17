@@ -22,14 +22,16 @@ public class JavaDelegateActivitiListenner implements JavaDelegate{
 	@Override
 	public void execute(DelegateExecution execution) {
 		System.out.println("JavaDelegateActivitiListenner >>>>>>>>"+execution.getEventName());
-		String clazz ="com.springboot.activiti.demo.DemoListener";
-		Delegate delegate = getInstance(clazz);
+		String clazz1 ="com.springboot.activiti.demo.DemoListener";
+		Delegate delegate = getInstance(clazz1);
 		try {
-			Class<?> clazzInstance = ReflectionUtils.forName(clazz);
+			Class<?> clazzInstance = ReflectionUtils.forName(clazz1);
 			if(Delegate.class.isAssignableFrom(clazzInstance)) {
 				delegate =(Delegate) clazzInstance.newInstance();
 				String execute = delegate.execute();
 				System.out.println("JavaDelegateActivitiListenner>>>>>>"+execute);
+				String value1 = (String) clazz.getValue(execution);
+				System.out.println("value1>>>>>>>>>>>>>"+value1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

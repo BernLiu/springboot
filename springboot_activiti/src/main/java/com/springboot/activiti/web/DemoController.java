@@ -35,15 +35,15 @@ public class DemoController {
 		String processId = pi.getId();
 		System.out.println("流程创建成功，当前流程实例ID："+processId);
 		
-//		Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
-//		System.out.println("第一次执行前，任务名称："+task.getName());
-//		taskService.complete(task.getId());
+		Task task=taskService.createTaskQuery().processInstanceId(processId).singleResult();
+		System.out.println("第一次执行前，任务名称："+task.getName());
+		taskService.complete(task.getId());
  
 //		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
 //		System.out.println("第二次执行前，任务名称："+task.getName());
 //		taskService.complete(task.getId());
  
-//		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
-//		System.out.println("task为null，任务执行完毕："+task);
+		task = taskService.createTaskQuery().processInstanceId(processId).singleResult();
+		System.out.println("task为null，任务执行完毕："+task);
 	}
 }

@@ -7,7 +7,7 @@ import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GlobalActivitiEventListener implements ActivitiEventListener,Serializable{
+public class GlobalActivitiEventListener implements ActivitiEventListener, Serializable {
 
 	/**
 	 * 
@@ -16,7 +16,7 @@ public class GlobalActivitiEventListener implements ActivitiEventListener,Serial
 
 	@Override
 	public void onEvent(ActivitiEvent event) {
-		System.out.println("event  >>>>>>"+event.getProcessInstanceId());
+		System.out.println("event  >>>>>>" + event.getProcessInstanceId());
 		
 	}
 
