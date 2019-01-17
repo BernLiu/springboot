@@ -16,6 +16,7 @@ public class WorkflowContext implements Serializable{
 	private Map<String, Object> varables;
 	private WorkflowActivitiInstVO WorkflowActivitiInstVO;
 	private WorkItemVO workItemVO;
+	
 	public String getProcessDefId() {
 		return processDefId;
 	}
