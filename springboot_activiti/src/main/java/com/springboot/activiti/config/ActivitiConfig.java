@@ -20,9 +20,10 @@ public class ActivitiConfig implements ProcessEngineConfigurationConfigurer  {
 
 	@Override
 	public void configure(SpringProcessEngineConfiguration processEngineConfiguration) {
+		if(globalActivitiEventListener!=null) {
 			List<ActivitiEventListener> activitiEventListener = new ArrayList<ActivitiEventListener>();
 			activitiEventListener.add(globalActivitiEventListener);
 			processEngineConfiguration.setEventListeners(activitiEventListener);
+		}
 	}
-
 }

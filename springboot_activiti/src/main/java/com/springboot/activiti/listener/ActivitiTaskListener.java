@@ -2,25 +2,27 @@ package com.springboot.activiti.listener;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ActivitiTaskListener implements TaskListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Logger logger = LoggerFactory.getLogger(GlobalActivitiEventListener.class);
+
 
 	@Override
 	public void notify(DelegateTask delegateTask) {
 		String eventName = delegateTask.getEventName();
 		if ("create".endsWith(eventName)) {
-		System.out.println("create=========");
+			logger.info("ActivitiTaskListener >>>>>>> delegateTask >>>>>>>>>>>>create ");
 		}else if ("assignment".endsWith(eventName)) {
-		System.out.println("assignment========");
+			logger.info("ActivitiTaskListener >>>>>>> delegateTask >>>>>>>>>>>>assignment ");
 		}else if ("complete".endsWith(eventName)) {
-		System.out.println("complete===========");
+			logger.info("ActivitiTaskListener >>>>>>> delegateTask >>>>>>>>>>>>complete ");
 		}else if ("delete".endsWith(eventName)) {
-		System.out.println("delete=============");
+			logger.info("ActivitiTaskListener >>>>>>> delegateTask >>>>>>>>>>>>delete ");
 		}
 	}
 
