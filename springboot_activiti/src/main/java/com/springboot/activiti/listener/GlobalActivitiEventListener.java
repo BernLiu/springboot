@@ -6,7 +6,7 @@ import java.util.List;
 import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
 import org.activiti.engine.delegate.event.impl.ActivitiEntityEventImpl;
-import org.activiti.engine.impl.persistence.entity.TaskEntityImpl;
+import org.activiti.engine.impl.persistence.entity.TaskEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -29,12 +29,12 @@ public class GlobalActivitiEventListener implements ActivitiEventListener, Seria
 		List<EventListener> eventListeners = EventListenerManager.getInstance().getEventListeners(EventType.TASK_CREATED);
 		if(!CollectionUtils.isEmpty(eventListeners)) {
 			 ActivitiEntityEventImpl enitiyEventImpl = (ActivitiEntityEventImpl)event;
-			 TaskEntityImpl entity = (TaskEntityImpl)enitiyEventImpl.getEntity();
+			 TaskEntity entity = (TaskEntity)enitiyEventImpl.getEntity();
 			 String processInstanceId = event.getProcessInstanceId();
 			 String processDefinitionId = event.getProcessDefinitionId();
 			 logger.info("processInstanceId >>>>>>>>>>>> {}"+processInstanceId);
 			 logger.info("processDefinitionId>>>>>>>>>>>>{}"+processDefinitionId);
-		}
+		} 
 	}
 
 	@Override
