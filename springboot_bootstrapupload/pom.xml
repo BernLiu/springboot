@@ -5,5 +5,5 @@
     <artifactId>SpringBoot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>springboot_upload</artifactId>
+  <artifactId>springboot_bootstrapupload</artifactId>
 </project>
