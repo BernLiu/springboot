@@ -50,13 +50,18 @@ public class JobController {
 			return " error: id is no exit";
 		TriggerKey triggerKey = new TriggerKey(entity.getName(), entity.getGroup());
 		JobKey jobKey = jobService.getJobKey(entity);
+		//创建调度
 		Scheduler scheduler = scudSchedulerFactoryBean.getScheduler();
 		try {
 			scheduler.unscheduleJob(triggerKey);
 			scheduler.deleteJob(jobKey);
+			
+			
 			JobDataMap map = jobService.getJobDataMap(entity);
 			JobDetail jobDetail = jobService.getJobDetail(jobKey, entity.getDescription(), map);
+			
 			if (entity.getStatus().equals("OPEN")) {
+				//开启调度
 				scheduler.scheduleJob(jobDetail, jobService.getTrigger(entity));
 				result = "Refresh Job : " + entity.getName() + "\t jarPath: " + entity.getJarPath() + " success !";
 			} else {

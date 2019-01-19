@@ -27,8 +27,8 @@ public class MyTriggerListener implements TriggerListener{
 	public void triggerFired(Trigger trigger, JobExecutionContext context) {
 		 String jobName = context.getJobDetail().getKey().getName();
 		 String calendarName = trigger.getCalendarName();
-		 logger.info("MyTriggerListener - triggerFired :  "+jobName + " is going to be executed");
-		 logger.info("MyTriggerListener - triggerFired :  "+calendarName + " is going to be executed");
+		 logger.info("【MyTriggerListener】 >>>>>>>>>>>>>>    triggerFired :  "+jobName + " is going to be executed");
+		 logger.info("【MyTriggerListener】 >>>>>>>>>>>>>>    triggerFired :  "+calendarName + " is going to be executed");
 	}
 
 	/**
@@ -37,12 +37,12 @@ public class MyTriggerListener implements TriggerListener{
 	 */
 	@Override
 	public boolean vetoJobExecution(Trigger trigger, JobExecutionContext context) {
-		System.out.println("发现此次Job的相关资源准备存在问题，不便展开任务，返回true表示否决此次任务执行");
 		 String jobName = context.getJobDetail().getKey().getName();
 		 String calendarName = trigger.getCalendarName();
-		 logger.info("MyTriggerListener - vetoJobExecution :  "+jobName + " is going to be executed");
-		 logger.info("MyTriggerListener - vetoJobExecution :  "+calendarName + " is going to be executed");
-		return true;
+		 logger.info("【MyTriggerListener】>>>>>>> 【 vetoJobExecution】 : >>>>>>>>>>>>>>>>> "+jobName + " is going to be executed");
+		 logger.info("【MyTriggerListener】 >>>>>>> 【 vetoJobExecution】 : >>>>>>>>>>>>>>>>> "+calendarName + " is going to be executed");
+	//	 logger.info("发现此次Job的相关资源准备存在问题，不便展开任务，返回true表示否决此次任务执行");
+		return false;
 	}
 
 	/**
@@ -52,7 +52,7 @@ public class MyTriggerListener implements TriggerListener{
 	@Override
 	public void triggerMisfired(Trigger trigger) {
 		String calendarName = trigger.getCalendarName();
-		logger.info("当前触发错过的Trigger : "+ calendarName);
+		logger.info("【   triggerMisfired  】当前触发错过的Trigger :>>>>>>>>>>>>>>>>>> "+ calendarName);
 		
 	}
 
@@ -63,7 +63,7 @@ public class MyTriggerListener implements TriggerListener{
 	@Override
 	public void triggerComplete(Trigger trigger, JobExecutionContext context,
 			CompletedExecutionInstruction triggerInstructionCode) {
-		logger.info("Trigger 被触发并且完成了 Job 的执行,此方法被调用");
+		logger.info("【 triggerComplete 】>>>>>>>>>>>>>>>>>>>>>>>Trigger 被触发并且完成了 Job 的执行,此方法被调用");
 		
 	}
 

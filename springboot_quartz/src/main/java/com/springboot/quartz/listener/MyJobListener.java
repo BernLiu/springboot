@@ -24,7 +24,7 @@ public class MyJobListener implements JobListener{
 	    @Override
 	    public void jobToBeExecuted(JobExecutionContext context) {
 	        String jobName = context.getJobDetail().getKey().getName();
-	        logger.info(jobName + " is going to be executed");
+	        logger.info("【  MyJobListener  】>>>>>【  jobToBeExecuted 】>>>>>>"+jobName + ">>>>>>>>>>>>>>>>>>> 正在被执行");
 	    }
 
 	    /**
@@ -33,7 +33,7 @@ public class MyJobListener implements JobListener{
 	    @Override
 	    public void jobExecutionVetoed(JobExecutionContext context) {
 	        String jobName = context.getJobDetail().getKey().getName();
-	        logger.info(jobName + " was vetoed and not executed");
+	        logger.info("【  MyJobListener  】>>>>>【 jobExecutionVetoed 】"+jobName + ">>>>>>>>>>>>>>>>>>>> 正在被执行");
 	    }
 
 	    /**
@@ -42,7 +42,7 @@ public class MyJobListener implements JobListener{
 	    @Override
 	    public void jobWasExecuted(JobExecutionContext context, JobExecutionException jobException) {
 	        String jobName = context.getJobDetail().getKey().getName();
-	        logger.info(jobName + " was executed");
+	        logger.info("【  MyJobListener  】>>>>>【 jobWasExecuted 】"+jobName + " >>>>>>>>>>>>>>>>>>>正在被执行");
 
 	    }
 }
