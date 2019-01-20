@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.sys.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.springboot.sys.bean.UserEntity">
+		<result column="id" property="id" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="email" property="email" />
+		<result column="status" property="status" />
+		<result column="create_time" property="createTime" />
+	</resultMap>
+	
+	<!-- <sql id="Base_Column_List">
+		id, username, password,email,status,create_time
+	</sql>
+
+	<select id="userLogin" resultMap="BaseResultMap" parameterType="com.activiti.boot.bean.UserEntity">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where username = #{username} and password = #{password}
+	</select>
+	
+	<select id="findOne" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where id = #{id}
+	</select>
+
+	<select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+	   select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where username = #{username} 
+	</select> -->
+</mapper>

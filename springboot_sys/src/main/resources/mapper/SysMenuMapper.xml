@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springboot.sys.mapper.SysMenuMapper">
+	<resultMap id="BaseResultMapMenu" type="com.springboot.sys.bean.SysMenuEntity">
+		<result column="menu_id" property="menuId" />
+		<result column="parent_id" property="parentId" />
+		<result column="res_id" property="resId" />
+		<result column="code" property="code" />
+		<result column="menu_name" property="menuName" />
+		<result column="system_id" property="systemId" />
+		<result column="is_leaf" property="isLeaf" />
+		<result column="view_path" property="viewPath" />
+		<result column="icon" property="icon" />
+		<result column="req_url" property="reqUrl" />
+		<result column="syspertag" property="syspertag" />
+		<result column="menuorder" property="menuorder" />
+		<result column="is_used" property="isUsed" />
+		<result column="module_type" property="moduleType" />
+		<result column="remark" property="remark" />
+		<result column="sort" property="sort" />
+		<result column="wholeName" property="wholeName" />
+	</resultMap>
+	
+	<!-- <sql id="Base_Column_List">
+		menu_id, parent_id, res_id,code,menu_name,system_id,is_leaf,view_path,icon,req_url,syspertag,menuorder,is_used,module_type,remark,
+		sort,wholeName
+	</sql>
+ -->
+	<select id="getViewPathByReqUrl" parameterType="String" resultType="String">
+		select view_path from sys_menu where req_url=#{reqUrl}
+	</select>
+	
+</mapper>
