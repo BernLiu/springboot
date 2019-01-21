@@ -3,7 +3,9 @@ package com.springboot.sys.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.springboot.sys.atinterface.Column;
@@ -32,9 +34,16 @@ public class ReflectionUtils {
 	public static String[] getAllColumnsName(Object obj) {
 		String[] fieldNames = null;
 		try {
-			Field[] fields = obj.getClass().getDeclaredFields();
-			fieldNames = new String[fields.length];
-			for (int i = 0; i < fields.length; i++) {
+			Field[] fields = obj.getClass().getDeclaredFields();	
+			List<Field> fieldsList = Arrays.asList(fields);
+			//获取继承类
+			Class<?> superClazz = obj.getClass().getSuperclass();
+			if(superClazz!=null) {
+	            Field[] superFields = superClazz.getDeclaredFields();
+	            Arrays.asList(superFields).addAll(fieldsList);
+			}
+			fieldNames = new String[fieldsList.size()];
+			for (int i = 0; i < fieldsList.size(); i++) {
 				if ("serialVersionUID".equals(fields[i].getName()))
 					continue;
 				fieldNames[i] = fields[i].getAnnotation(Column.class).value();
