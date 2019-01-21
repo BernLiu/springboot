@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: springboot_dubbo_server
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: hp
+Built-By: pactera
 Implementation-Vendor-Id: com.maven.bern
-Build-Jdk: 1.8.0_201
+Build-Jdk: 1.8.0_191
 Implementation-URL: http://projects.spring.io/spring-boot/SpringBoot/s
  pringboot_dubbo_server/
 Created-By: Maven Integration for Eclipse

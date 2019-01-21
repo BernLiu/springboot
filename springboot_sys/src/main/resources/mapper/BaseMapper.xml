@@ -22,7 +22,10 @@
           FROM ${TABLE_NAME} WHERE 1=1
           <!-- 动态添加查询的参数 -->
           <foreach collection="COLUMNS_VALUES" item="item" index="index" separator=" ">
-          		AND ${index} = #{item}
+          		AND ${index} <!-- = #{item} -->
+          		<foreach collection="${item}" item="item" index="index" separator=" ">
+          				${index} #{item}
+          		</foreach>
           </foreach>
     </select>
 
