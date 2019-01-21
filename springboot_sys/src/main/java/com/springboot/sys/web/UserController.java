@@ -22,7 +22,7 @@ public class UserController {
 	@RequestMapping("/queryAll")
 	public Map<String,Object> queryAll(){
 		UserEntity userEntity = new UserEntity();
-		userEntity.setId("2");
+		userEntity.setUserId("2");
 		userEntity.setUsername("admin123");
 		HashMap<String, Object> query = userService.queryForObject(userEntity);
 		return query;

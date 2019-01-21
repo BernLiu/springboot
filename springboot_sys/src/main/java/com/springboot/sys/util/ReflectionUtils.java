@@ -8,7 +8,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.util.StringUtils;
+
 import com.springboot.sys.atinterface.Column;
+import com.springboot.sys.enums.SearchType;
 
 public class ReflectionUtils {
 
@@ -23,8 +26,9 @@ public class ReflectionUtils {
 	}
 
 	public static String getSimpleFieldName(String fieldName) {
-		return fieldName.substring(fieldName.lastIndexOf(".")+1,fieldName.length());
+		return fieldName.substring(fieldName.lastIndexOf(".") + 1, fieldName.length());
 	}
+
 	/**
 	 * 获取对象所有属性名
 	 * 
@@ -34,13 +38,13 @@ public class ReflectionUtils {
 	public static String[] getAllColumnsName(Object obj) {
 		String[] fieldNames = null;
 		try {
-			Field[] fields = obj.getClass().getDeclaredFields();	
+			Field[] fields = obj.getClass().getDeclaredFields();
 			List<Field> fieldsList = Arrays.asList(fields);
-			//获取继承类
+			// 获取继承类
 			Class<?> superClazz = obj.getClass().getSuperclass();
-			if(superClazz!=null) {
-	            Field[] superFields = superClazz.getDeclaredFields();
-	            Arrays.asList(superFields).addAll(fieldsList);
+			if (!superClazz.getSimpleName().equals("Object")) {
+				Field[] superFields = superClazz.getDeclaredFields();
+				Arrays.asList(superFields).addAll(fieldsList);
 			}
 			fieldNames = new String[fieldsList.size()];
 			for (int i = 0; i < fieldsList.size(); i++) {
@@ -71,7 +75,7 @@ public class ReflectionUtils {
 				fields[i].setAccessible(true);
 				String fieldValue = (String) fields[i].get(obj);
 				if (null != fieldValue) {
-					String fieldName =String.valueOf(fields[i]);
+					String fieldName = String.valueOf(fields[i]);
 					map.put(FieldUtils.humpToLine(getSimpleFieldName(fieldName)), fieldValue);
 				}
 			}
@@ -88,14 +92,12 @@ public class ReflectionUtils {
 	 * @param object
 	 * @return
 	 */
-	public String getFieldValueByFieldName(String fieldName, Object object) {
+	public static String getFieldValueByFieldName(String fieldName, Object obj) {
 		try {
-			Field field = object.getClass().getDeclaredField(fieldName);
-			// 设置对象的访问权限，保证对private的属性的访问
+			Field field = obj.getClass().getDeclaredField(FieldUtils.lineToHump(fieldName));
 			field.setAccessible(true);
-			return (String) field.get(object);
+			return (String) field.get(obj);
 		} catch (Exception e) {
-
 			return null;
 		}
 	}
@@ -136,6 +138,21 @@ public class ReflectionUtils {
 			return newStr2;
 		}
 		return str;
+	}
+
+	public static String getAnnotation(Object obj, String fieldName) {
+		try {
+			Field field = obj.getClass().getDeclaredField(FieldUtils.lineToHump(fieldName));
+			SearchType searchType = field.getAnnotation(Column.class).searchType();
+			if (StringUtils.isEmpty(searchType.getStr()))
+				return searchType.getMatchMode().toString();
+			return searchType.getStr();
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
