@@ -7,7 +7,11 @@ public class BuildWhereSql {
 		sb.append("AND ");
 		sb.append(field);
 		sb.append(searchType );
-		sb.append("'"+value+"'");
+		if(value instanceof String) { 
+			sb.append("'"+value+"'");
+		}else {
+			sb.append(value);
+		}
 		return sb.toString();
 	}
 }
